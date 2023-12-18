@@ -55,17 +55,17 @@ mkdir -p /app
 
 VALIDATE $? "creating app directory" 
 
-curl -o /tmp/catalogue.zip https://roboshop-builds.s3.amazonaws.com/catalogue.zip $>> $LOGFILE
+curl -o /tmp/catalogue.zip https://roboshop-builds.s3.amazonaws.com/catalogue.zip &>> $LOGFILE
  
 VALIDATE $? "Downloading catalougue application" 
 
 cd /app
 
-unzip -o /tmp/catalogue.zip $>> $LOGFILE
+unzip -o /tmp/catalogue.zip &>> $LOGFILE
 
 VALIDATE $? "unzipping catalogue" 
 
-npm install $>> $LOGFILE
+npm install &>> $LOGFILE
 
 VALIDATE $? "installing dependencies" 
 
@@ -74,15 +74,15 @@ cp /home/centos/roboshop-shell/catalogue.service /etc/systemd/system/catalogue.s
 
 VALIDATE $? "copying catalougue service file" 
 
-systemctl daemon-reload $>> $LOGFILE
+systemctl daemon-reload &>> $LOGFILE
 
 VALIDATE $? "catalogue demon reload" 
 
-systemctl enable catalogue $>> $LOGFILE
+systemctl enable catalogue &>> $LOGFILE
 
 VALIDATE $? "enabling catalogue"
 
-systemctl start catalogue $>> $LOGFILE
+systemctl start catalogue &>> $LOGFILE
 
 VALIDATE $? "starting catalogue" 
 
@@ -90,11 +90,11 @@ cp /home/centos/roboshop-shell/mongo.repo /etc/yum.repos.d/mongo.repo
 
 VALIDATE $? "copying mongodb repo"
 
-dnf install mongodb-org-shell -y $>> $LOGFILE
+dnf install mongodb-org-shell -y &>> $LOGFILE
 
 VALIDATE $? "installing mongodb client" 
 
-mongo --host $MONGODB_HOST </app/schema/catalogue.js $>> $LOGFILE
+mongo --host $MONGODB_HOST </app/schema/catalogue.js &>> $LOGFILE
 
 VALIDATE $? "loading catalougue data into MongoDB"
 
