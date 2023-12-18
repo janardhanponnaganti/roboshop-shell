@@ -55,21 +55,21 @@ unzip -o /tmp/shipping.zip &>> $LOGFILE
 
 VALIDATE $? "unzipping shipping"
 
-mvn clean package
+mvn clean package &>> $LOGFILE
 
-mv target/shipping-1.0.jar shipping.jar
+mv target/shipping-1.0.jar shipping.jar &>> $LOGFILE
 
-cp /home/centos/roboshop-shell/shipping.service /etc/systemd/system/shipping.service
+cp /home/centos/roboshop-shell/shipping.service /etc/systemd/system/shipping.service &>> $LOGFILE
 
-systemctl daemon-reload
+systemctl daemon-reload &>> $LOGFILE
 
-systemctl enable shipping 
+systemctl enable shipping &>> $LOGFILE
 
-systemctl start shipping
+systemctl start shipping &>> $LOGFILE
 
-dnf install mysql -y
+dnf install mysql -y &>> $LOGFILE
 
-mysql -h mysql.ponnaganti.online -uroot -pRoboShop@1 < /app/schema/shipping.sql 
+mysql -h mysql.ponnaganti.online -uroot -pRoboShop@1 < /app/schema/shipping.sql &>> $LOGFILE
 
-systemctl restart shipping
+systemctl restart shipping &>> $LOGFILE
 
