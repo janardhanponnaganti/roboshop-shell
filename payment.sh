@@ -30,7 +30,9 @@ else
     echo "you are root user"
 fi # fi means reverse of if, indicating condition end 
 
-dnf install python36 gcc python3-devel -y
+dnf install python36 gcc python3-devel -y &>> $LOGFILE
+
+VALIDATE $? "install pyton"
 
 id roboshop
 if [ $? -ne 0 ]
