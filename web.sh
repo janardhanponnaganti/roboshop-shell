@@ -63,4 +63,4 @@ VALIDATE $? "copied roboshop reverse proxy"
 
 systemctl restart nginx &>> $LOGFILE
 
-VALIDATE $? "restarting nginx"
+VALIDATE $? "restarting nginx" 
