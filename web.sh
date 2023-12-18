@@ -5,7 +5,6 @@ R="\e[31m"
 Y="\e[33m"
 G="\e[32m"
 N="\e[0m"
-MONGODB_HOST=mongodb.ponnaganti.online
 
 TIMESTAMP=$(date +%F-%H-%M-%S)
 LOGFILE="/tmp/$0-$TIMESTAMP.log"
